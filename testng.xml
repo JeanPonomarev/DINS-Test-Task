@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="jsonplaceholder-typicode-post-tests">
+    <parameter name="postsNumber" value="100"/>
+
+    <parameter name="criticalResponseTime" value="5000"/>
+
+    <parameter name="validPostId" value="10"/>
+    <parameter name="nonexistentPostId" value="0"/>
+    <parameter name="invalidPostId" value="abcde"/>
+    <parameter name="largePostId" value="9999999999999999"/>
+
+    <parameter name="validUserId" value="5"/>
+    <parameter name="nonexistentUserId" value="20"/>
+    <parameter name="invalidUserId" value="abcde"/>
+    <parameter name="largeUserId" value="9999999999999999"/>
+    <parameter name="userPostsNumber" value="10" />
+
+    <listeners>
+        <listener class-name="com.typicode.jsonplaceholder.utilities.Listeners" />
+    </listeners>
+
+    <test name="JsonplaceholderTypicodeRestAPITest">
+        <classes>
+            <class name="com.typicode.jsonplaceholder.test_cases.list_of_resourses.GetPostsListTest">
+                <methods>
+                    <include name="testPostsListLength" />
+                    <include name="testPostsListIsSortedById" />
+                    <include name="testPostsListObjectHasOnlyNotNullFields" />
+                    <include name="testStatusCode" />
+                    <include name="testStatusLine" />
+                    <include name="testContentType" />
+                    <include name="testResponseTime" />
+                    <include name="testServerType" />
+                    <include name="testContentEncoding" />
+                </methods>
+            </class>
+
+            <class name="com.typicode.jsonplaceholder.test_cases.post_by_id.GetPostByValidIdTest">
+                <methods>
+                    <include name="testStatusCode" />
+                    <include name="testStatusLine" />
+                    <include name="testPostFields" />
+                    <include name="testContentType" />
+                    <include name="testResponseTime" />
+                    <include name="testServerType" />
+                    <include name="testContentEncoding" />
+                </methods>
+            </class>
+
+            <class name="com.typicode.jsonplaceholder.test_cases.post_by_id.GetPostByInvalidIdTest">
+                <methods>
+                    <include name="testGetPostByNonexistentId" />
+                    <include name="testGetPostByInvalidId" />
+                    <include name="testGetPostByLargeId" />
+                </methods>
+            </class>
+
+                <!-- this test class is optional: verifying that all of the posts can be retrieved properly by id (100 test-cases) -->
+<!--            <class name="com.typicode.jsonplaceholder.test_cases.post_by_id.GetPostsByAllValidIdTest">-->
+<!--                <methods>-->
+<!--                    <include name="testGetPostByValidId" />-->
+<!--                </methods>-->
+<!--            </class>-->
+
+            <class name="com.typicode.jsonplaceholder.test_cases.posts_by_user_id.GetPostsByValidUserIdTest">
+                <methods>
+                    <include name="testPostsListHasCorrectFields" />
+                    <include name="testPostListsLength" />
+                    <include name="testPostsListIsSortedById" />
+                    <include name="testStatusCode" />
+                    <include name="testStatusLine" />
+                    <include name="testContentType" />
+                    <include name="testResponseTime" />
+                    <include name="testServerType" />
+                    <include name="testContentEncoding" />
+                </methods>
+            </class>
+
+            <class name="com.typicode.jsonplaceholder.test_cases.posts_by_user_id.GetPostsByInvalidUserId">
+                <methods>
+                    <include name="testGetPostByNonexistentUserId" />
+                    <include name="testGetPostByInvalidUserId" />
+                    <include name="testGetPostByLargeUserId" />
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+</suite>

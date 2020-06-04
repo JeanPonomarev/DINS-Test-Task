@@ -1,0 +1,5 @@
+.idea
+
+reports
+# Project exclude paths
+/target/
